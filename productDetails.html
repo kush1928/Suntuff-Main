@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - SunTuff</title>
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Product Details Page Specific Styles */
+        .product-details {
+            min-height: 100vh;
+            padding: 5vw;
+            background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(52, 152, 219, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.3; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        .product-header {
+            display: flex;
+            gap: 5vw;
+            margin-bottom: 5vw;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            background: #FFFFFF;
+            padding: 3vw;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-image {
+            width: 50%;
+            height: 40vw;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.95);
+            animation: scaleIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes scaleIn {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .product-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(52, 152, 219, 0.1);
+        }
+
+        .product-info {
+            width: 45%;
+            padding: 2vw;
+            opacity: 0;
+            transform: translateX(30px);
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .product-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #3498DB, #2980B9);
+            color: white;
+            padding: 0.5vw 1vw;
+            border-radius: 20px;
+            font-size: 0.8vw;
+            font-weight: 500;
+            margin-bottom: 1vw;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .product-title {
+            font-size: 3vw;
+            font-weight: 400;
+            color: #2C3E50;
+            margin-bottom: 1vw;
+            background: linear-gradient(45deg, #2C3E50, #3498DB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards 0.3s;
+        }
+
+        .product-description {
+            font-size: 1.2vw;
+            line-height: 1.6;
+            color: #34495E;
+            margin-bottom: 2vw;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards 0.5s;
+        }
+
+        .product-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1vw;
+            margin-bottom: 3vw;
+        }
+
+        .spec-item {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 1vw;
+            border-radius: 5px;
+            font-size: 1vw;
+            color: #3498DB;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(52, 152, 219, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.4s ease forwards;
+        }
+
+        .spec-item:nth-child(1) { animation-delay: 0.7s; }
+        .spec-item:nth-child(2) { animation-delay: 0.8s; }
+        .spec-item:nth-child(3) { animation-delay: 0.9s; }
+        .spec-item:nth-child(4) { animation-delay: 1s; }
+
+        .spec-item:hover {
+            background: rgba(52, 152, 219, 0.2);
+            transform: translateY(-2px);
+            border-color: rgba(52, 152, 219, 0.2);
+        }
+
+        .product-features {
+            margin-bottom: 3vw;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+            margin-bottom: 1vw;
+            padding: 1vw;
+            border-radius: 5px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(52, 152, 219, 0.1);
+            background: rgba(52, 152, 219, 0.05);
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInLeft 0.4s ease forwards;
+        }
+
+        .feature-item:nth-child(1) { animation-delay: 1.1s; }
+        .feature-item:nth-child(2) { animation-delay: 1.2s; }
+        .feature-item:nth-child(3) { animation-delay: 1.3s; }
+        .feature-item:nth-child(4) { animation-delay: 1.4s; }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .feature-item:hover {
+            background: rgba(52, 152, 219, 0.1);
+            transform: translateX(5px);
+            border-color: rgba(52, 152, 219, 0.2);
+        }
+
+        .feature-icon {
+            width: 2vw;
+            height: 2vw;
+            background: linear-gradient(45deg, #3498DB, #2980B9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1vw;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2vw;
+            margin-top: 2vw;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards 1.5s;
+        }
+
+        .cta-button {
+            padding: 1vw 2vw;
+            font-size: 1vw;
+            font-weight: 500;
+            background: transparent;
+            color: #3498DB;
+            border: 1px solid #3498DB;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
+            border-radius: 5px;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #3498DB, #2980B9);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cta-button:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .cta-button:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .contact-button {
+            background: linear-gradient(45deg, #3498DB, #2980B9);
+            color: white;
+        }
+
+        .contact-button:hover {
+            background: linear-gradient(45deg, #2980B9, #3498DB);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 2vw;
+            left: 2vw;
+            background: linear-gradient(45deg, #3498DB, #2980B9);
+            color: white;
+            width: 3vw;
+            height: 3vw;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            opacity: 0;
+            transform: scale(0.8);
+            animation: scaleIn 0.4s ease forwards 0.2s;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1) rotate(-5deg);
+            background: linear-gradient(45deg, #2980B9, #3498DB);
+        }
+
+        @media (max-width: 768px) {
+            .product-header {
+                flex-direction: column;
+                gap: 3vw;
+                padding: 5vw;
+            }
+
+            .product-image, .product-info {
+                width: 100%;
+            }
+
+            .product-image {
+                height: 60vw;
+            }
+
+            .product-badge {
+                font-size: 3vw;
+                padding: 1vw 2vw;
+            }
+
+            .product-title {
+                font-size: 8vw;
+            }
+
+            .product-description {
+                font-size: 4vw;
+            }
+
+            .spec-item {
+                font-size: 3vw;
+                padding: 2vw;
+            }
+
+            .feature-icon {
+                width: 6vw;
+                height: 6vw;
+                font-size: 3vw;
+            }
+
+            .feature-text {
+                font-size: 3.5vw;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                padding: 3vw 6vw;
+                font-size: 4vw;
+            }
+
+            .back-button {
+                width: 10vw;
+                height: 10vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="loader">
+        <h1>DETAILS</h1>
+        <h1>SPECIFICATIONS</h1>
+        <h1>FEATURES</h1>
+    </div>
+
+    <div id="fixed-image"></div>
+    <div id="main">
+        <div id="page1">
+            <nav>
+                <h1><b>SUN<span style="color: #506680">TUFF</span></b></h1>
+                <div id="nav-part2">
+                    <h4><a href="index.html">Home</a></h4>
+                    <h4><a href="newProductsPage.html">Products</a></h4>
+                    <h4><a href="about.html">About</a></h4>
+                    <h4><a href="contact.html">Contact</a></h4>
+                </div>
+                <h3 class="menu-toggle">Menu</h3>
+            </nav>
+
+            <a href="newProductsPage.html" class="back-button">←</a>
+
+            <div class="product-details">
+                <div class="product-header">
+                    <div class="product-image" id="productImage"></div>
+                    <div class="product-info">
+                        <div class="product-badge" id="productBadge"></div>
+                        <h1 class="product-title" id="productTitle"></h1>
+                        <p class="product-description" id="productDescription"></p>
+                        <div class="product-specs" id="productSpecs"></div>
+                        <div class="product-features" id="productFeatures"></div>
+                        <div class="cta-buttons">
+                            <button class="cta-button contact-button" onclick="window.location.href='contact.html'">Contact for Information</button>
+                            <button class="cta-button" onclick="window.location.href='newProductsPage.html'">View All Products</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div id="footer-div"></div>
+        <h1>SunTuFF</h1>
+        <div id="footer-bottom">
+            <div class="copyright">
+                © 2024 Sun Tuff Pvt Ltd. All rights reserved.
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script>
+        // Product data
+        const products = {
+            'purevision': {
+                title: 'PureVision™ Clarity Glass',
+                badge: 'NEW',
+                description: 'Crystal-clear glass with 99% light transmission and superior optical quality. Perfect for applications where true color representation and brightness are essential.',
+                image: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                specs: ['UV Protection', 'Anti-Glare', 'Scratch Resistant', '99% Light Transmission'],
+                features: [
+                    { icon: '✓', text: 'Superior optical clarity' },
+                    { icon: '☀', text: 'Maximum light transmission' },
+                    { icon: '🛡', text: 'Advanced scratch resistance' },
+                    { icon: '✨', text: 'Easy to clean surface' }
+                ]
+            },
+            'solarshade': {
+                title: 'SolarShade™ Energy Glass',
+                badge: 'BESTSELLER',
+                description: 'Advanced solar control glass that reduces heat while maintaining natural light. Ideal for energy-efficient buildings and comfortable living spaces.',
+                image: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                specs: ['Heat Reduction', 'Energy Saving', 'UV Blocking', 'Natural Light'],
+                features: [
+                    { icon: '☀', text: 'Up to 70% heat reduction' },
+                    { icon: '⚡', text: 'Energy Star certified' },
+                    { icon: '🛡', text: '99% UV protection' },
+                    { icon: '✨', text: 'Maintains natural light' }
+                ]
+            },
+            'securaview': {
+                title: 'SecuraView™ Privacy Glass',
+                badge: 'INNOVATION',
+                description: 'Switchable privacy glass that transforms from clear to opaque with the flip of a switch. Perfect for modern offices and residential spaces.',
+                image: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                specs: ['Smart Glass', 'Instant Privacy', 'Energy Efficient', 'Remote Control'],
+                features: [
+                    { icon: '🔌', text: 'Instant privacy control' },
+                    { icon: '⚡', text: 'Low energy consumption' },
+                    { icon: '📱', text: 'Smart home compatible' },
+                    { icon: '✨', text: 'Sleek modern design' }
+                ]
+            },
+            'ecolux': {
+                title: 'EcoLux™ Sustainable Glass',
+                badge: 'ECO-FRIENDLY',
+                description: 'Environmentally friendly glass made with recycled materials and low-emission coating. A sustainable choice for eco-conscious projects.',
+                image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                specs: ['Recycled Content', 'Low-E Coating', 'Carbon Neutral', 'Sustainable'],
+                features: [
+                    { icon: '♻', text: '40% recycled content' },
+                    { icon: '🌱', text: 'Carbon neutral production' },
+                    { icon: '⚡', text: 'Energy efficient' },
+                    { icon: '✨', text: 'LEED certified' }
+                ]
+            },
+            'armorshield': {
+                title: 'ArmorShield™ Safety Glass',
+                badge: 'PREMIUM',
+                description: 'Laminated safety glass that provides protection against impacts and forced entry. Ideal for security-conscious applications.',
+                image: 'https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                specs: ['Impact Resistant', 'Security Grade', 'Soundproof', 'Safety'],
+                features: [
+                    { icon: '🛡', text: 'Impact resistant' },
+                    { icon: '🔊', text: 'Sound reduction' },
+                    { icon: '🔒', text: 'Security grade' },
+                    { icon: '✨', text: 'Clear visibility' }
+                ]
+            },
+            'thermaclear': {
+                title: 'ThermaClear™ Insulated Glass',
+                badge: 'TECHNOLOGY',
+                description: 'Double-glazed units with superior thermal insulation properties for all climates. Perfect for energy-efficient buildings.',
+                image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                specs: ['Thermal Insulation', 'Condensation Control', 'Energy Star Rated', 'Climate Control'],
+                features: [
+                    { icon: '❄', text: 'Superior insulation' },
+                    { icon: '💧', text: 'Condensation control' },
+                    { icon: '⚡', text: 'Energy Star rated' },
+                    { icon: '✨', text: 'All climate solution' }
+                ]
+            }
+        };
+
+        // Get product ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        // Load product data
+        if (productId && products[productId]) {
+            const product = products[productId];
+            
+            // Update page title
+            document.title = `${product.title} - SunTuff`;
+            
+            // Update product image
+            document.getElementById('productImage').style.backgroundImage = `url('${product.image}')`;
+            
+            // Update product badge
+            document.getElementById('productBadge').textContent = product.badge;
+            
+            // Update product title
+            document.getElementById('productTitle').textContent = product.title;
+            
+            // Update product description
+            document.getElementById('productDescription').textContent = product.description;
+            
+            // Update product specs
+            const specsContainer = document.getElementById('productSpecs');
+            product.specs.forEach(spec => {
+                const specItem = document.createElement('div');
+                specItem.className = 'spec-item';
+                specItem.textContent = spec;
+                specsContainer.appendChild(specItem);
+            });
+            
+            // Update product features
+            const featuresContainer = document.getElementById('productFeatures');
+            product.features.forEach(feature => {
+                const featureItem = document.createElement('div');
+                featureItem.className = 'feature-item';
+                featureItem.innerHTML = `
+                    <div class="feature-icon">${feature.icon}</div>
+                    <div class="feature-text">${feature.text}</div>
+                `;
+                featuresContainer.appendChild(featureItem);
+            });
+        } else {
+            // Redirect to products page if product not found
+            window.location.href = 'newProductsPage.html';
+        }
+
+        // Initialize Locomotive Scroll
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector("#main"),
+            smooth: true,
+        });
+
+        // Loader animation
+        setTimeout(function() {
+            document.getElementById("loader").style.top = "-100%";
+        }, 3000);
+    </script>
+</body>
+</html> 

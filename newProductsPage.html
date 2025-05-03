@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sundown Studio</title>
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="style.css">
+    <style>
+      /* Product Page Specific Styles */
+      #main {
+        position: relative;
+        background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+        overflow: hidden;
+      }
+
+      #page1 {
+        position: relative;
+        height: 100vh;
+        background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+        overflow: hidden;
+      }
+
+      .product-hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 5vw;
+        position: relative;
+        z-index: 1;
+        background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+        overflow: hidden;
+      }
+
+      .product-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 50% 50%, rgba(52, 152, 219, 0.1) 0%, transparent 70%);
+        animation: pulse 8s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.5; }
+        50% { transform: scale(1.2); opacity: 0.3; }
+        100% { transform: scale(1); opacity: 0.5; }
+      }
+
+      .product-hero-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1s ease forwards;
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .product-hero-left {
+        width: 45%;
+        padding-right: 5vw;
+        animation: slideInLeft 1s ease forwards;
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .product-hero-right {
+        width: 55%;
+        text-align: right;
+        animation: slideInRight 1s ease forwards;
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .product-hero h1 {
+        font-size: 8vw;
+        line-height: 7vw;
+        font-weight: 400;
+        margin-bottom: 3vw;
+        background: linear-gradient(45deg, #2C3E50, #3498DB);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: right;
+      }
+
+      .product-hero h3 {
+        font-size: 1.5vw;
+        font-weight: 300;
+        line-height: 1.6;
+        color: #34495E;
+        text-align: left;
+      }
+
+      .product-collection {
+        padding: 10vw 5vw;
+        background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);
+        position: relative;
+      }
+
+      .collection-header {
+        text-align: center;
+        margin-bottom: 5vw;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .collection-header h2 {
+        font-size: 4vw;
+        font-weight: 400;
+        margin-bottom: 1vw;
+        color: #2C3E50;
+        background: linear-gradient(45deg, #2C3E50, #3498DB);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .collection-header p {
+        font-size: 1.2vw;
+        color: #34495E;
+        line-height: 1.6;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3vw;
+        padding: 0 5vw;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .product-card {
+        display: grid;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s ease;
+        border-radius: 15px;
+        background: #FFFFFF;
+        position: relative;
+        isolation: isolate;
+        height: 100%;
+      }
+
+      .product-card > * {
+        grid-area: 1/1;
+        transition: 0.4s;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(52, 152, 219, 0.1);
+      }
+
+      .product-image {
+        height: 25vw;
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        border-radius: 15px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .product-caption {
+        display: grid;
+        align-items: end;
+        font-family: sans-serif;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #0000;
+        padding: 1.5rem;
+        background: var(--c, #3498DBaa);
+        clip-path: inset(0 var(--_i, 100%) 0 0);
+        -webkit-mask: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        -webkit-mask-clip: text, padding-box;
+        margin: -1px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .product-card:hover .product-caption {
+        --_i: 0%;
+      }
+
+      .product-card:hover .product-image {
+        transform: scale(1.1);
+      }
+
+      .product-info {
+        padding: 2vw;
+        background: #FFFFFF;
+        transform: translateY(var(--_i, 100%));
+        position: relative;
+        z-index: 3;
+      }
+
+      .product-card:hover .product-info {
+        --_i: 0;
+      }
+
+      @supports not (-webkit-mask-clip: text) {
+        .product-caption {
+          -webkit-mask: none;
+          color: white;
+        }
+      }
+
+      .product-badge {
+        position: absolute;
+        top: 2vw;
+        right: 2vw;
+        background: linear-gradient(45deg, #3498DB, #2980B9);
+        color: white;
+        padding: 0.5vw 1vw;
+        border-radius: 20px;
+        font-size: 0.8vw;
+        font-weight: 500;
+        z-index: 10;
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+      }
+
+      .product-info h3 {
+        font-size: 1.5vw;
+        margin-bottom: 0.5vw;
+        color: #2C3E50;
+        background: linear-gradient(45deg, #2C3E50, #3498DB);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .product-info p {
+        font-size: 1vw;
+        color: #34495E;
+        margin-bottom: 1.5vw;
+        line-height: 1.6;
+      }
+
+      .product-specs {
+        display: flex;
+        gap: 1vw;
+        margin-bottom: 1.5vw;
+        flex-wrap: wrap;
+      }
+
+      .spec-item {
+        background: rgba(52, 152, 219, 0.1);
+        padding: 0.5vw 1vw;
+        border-radius: 5px;
+        font-size: 0.8vw;
+        color: #3498DB;
+        transition: all 0.3s ease;
+      }
+
+      .spec-item:hover {
+        background: rgba(52, 152, 219, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .product-cta {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      .product-button {
+        background: transparent;
+        color: #3498DB;
+        border: 1px solid #3498DB;
+        padding: 0.8vw 1.5vw;
+        font-size: 1vw;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        letter-spacing: 0.5px;
+        box-shadow: none;
+        border-radius: 5px;
+      }
+
+      .product-button:hover {
+        background: linear-gradient(45deg, #3498DB, #2980B9);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .product-features {
+        padding: 10vw 5vw;
+        background: linear-gradient(135deg, #F5F5F5 0%, #E9ECEF 100%);
+        position: relative;
+      }
+
+      .features-header {
+        text-align: center;
+        margin-bottom: 5vw;
+      }
+
+      .features-header h2 {
+        font-size: 4vw;
+        font-weight: 400;
+        margin-bottom: 1vw;
+        color: #1A1A1A;
+      }
+
+      .features-header p {
+        font-size: 1.2vw;
+        color: #3A3A3A;
+        width: 50%;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3vw;
+        padding: 0 5vw;
+      }
+
+      .feature-card {
+        background: #FFFFFF;
+        padding: 3vw;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        text-align: center;
+        border: 1px solid rgba(52, 152, 219, 0.1);
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.6s ease forwards;
+      }
+
+      .feature-card:nth-child(1) { animation-delay: 0.2s; }
+      .feature-card:nth-child(2) { animation-delay: 0.4s; }
+      .feature-card:nth-child(3) { animation-delay: 0.6s; }
+      .feature-card:nth-child(4) { animation-delay: 0.8s; }
+      .feature-card:nth-child(5) { animation-delay: 1s; }
+      .feature-card:nth-child(6) { animation-delay: 1.2s; }
+
+      .feature-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(52, 152, 219, 0.1);
+        border-color: rgba(52, 152, 219, 0.2);
+      }
+
+      .feature-icon {
+        height: 5vw;
+        width: 5vw;
+        background: linear-gradient(45deg, #3498DB, #2980B9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 2vw;
+        color: white;
+        font-size: 2vw;
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        animation: iconFloat 3s ease-in-out infinite;
+      }
+
+      @keyframes iconFloat {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
+      }
+
+      .product-showcase {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 0 5vw;
+        background: linear-gradient(135deg, #F5F5F5 0%, #E9ECEF 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .showcase-content {
+        width: 40%;
+        z-index: 10;
+      }
+
+      .showcase-content h2 {
+        font-size: 4vw;
+        font-weight: 400;
+        margin-bottom: 2vw;
+        color: #2C3E50;
+        background: linear-gradient(45deg, #2C3E50, #3498DB);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .showcase-content p {
+        font-size: 1.2vw;
+        line-height: 1.6;
+        margin-bottom: 3vw;
+        color: #34495E;
+      }
+
+      .showcase-image {
+        position: absolute;
+        right: 5vw;
+        width: 50%;
+        height: 80%;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      /* New Glass Categories Section */
+      .glass-categories {
+        padding: 5vw 5vw;
+        background: linear-gradient(135deg, #F5F5F5 0%, #E9ECEF 100%);
+      }
+
+      .categories-header {
+        text-align: center;
+        margin-bottom: 5vw;
+      }
+
+      .categories-header h2 {
+        font-size: 4vw;
+        font-weight: 400;
+        margin-bottom: 1vw;
+        color: #1A1A1A;
+      }
+
+      .categories-header p {
+        font-size: 1.2vw;
+        color: #3A3A3A;
+        width: 50%;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2vw;
+      }
+
+      .category-card {
+        position: relative;
+        height: 30vw;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease;
+      }
+
+      .category-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .category-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.5s ease;
+      }
+
+      .category-card:hover .category-image {
+        transform: scale(1.1);
+      }
+
+      .category-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 3vw;
+        background: linear-gradient(to top, rgba(26, 26, 26, 0.8), transparent);
+        color: white;
+        transform: translateY(30%);
+        transition: transform 0.4s ease;
+      }
+
+      .category-card:hover .category-overlay {
+        transform: translateY(0);
+      }
+
+      .category-overlay h3 {
+        font-size: 2.5vw;
+        margin-bottom: 1vw;
+        font-weight: 400;
+      }
+
+      .category-overlay p {
+        font-size: 1.2vw;
+        line-height: 1.6;
+        opacity: 0;
+        max-height: 0;
+        transition: opacity 0.4s ease, max-height 0.4s ease;
+      }
+
+      .category-card:hover .category-overlay p {
+        opacity: 1;
+        max-height: 200px;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .product-hero-content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .product-hero-left,
+        .product-hero-right {
+          width: 100%;
+          padding: 0;
+          text-align: center;
+        }
+
+        .product-hero h1 {
+          text-align: center;
+          font-size: 12vw;
+          line-height: 11vw;
+          margin-bottom: 5vw;
+        }
+
+        .product-hero h3 {
+          text-align: center;
+          font-size: 4vw;
+        }
+
+        .collection-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .collection-header h2 {
+          font-size: 10vw;
+          margin-bottom: 5vw;
+        }
+
+        .collection-header p {
+          width: 100%;
+          font-size: 4vw;
+        }
+
+        .product-grid {
+          grid-template-columns: 1fr;
+          gap: 5vw;
+          padding: 0 5vw;
+        }
+
+        .product-image {
+          height: 60vw;
+        }
+
+        .product-badge {
+          font-size: 3vw;
+          padding: 1vw 2vw;
+        }
+
+        .product-info {
+          padding: 4vw;
+        }
+
+        .product-info h3 {
+          font-size: 5vw;
+        }
+
+        .product-info p {
+          font-size: 3.5vw;
+        }
+
+        .spec-item {
+          font-size: 3vw;
+          padding: 1vw 2vw;
+        }
+
+        .product-button {
+          font-size: 3.5vw;
+          padding: 2vw 4vw;
+        }
+
+        .features-header h2 {
+          font-size: 10vw;
+        }
+
+        .features-header p {
+          width: 100%;
+          font-size: 4vw;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 8vw;
+        }
+
+        .feature-icon {
+          height: 15vw;
+          width: 15vw;
+          font-size: 6vw;
+        }
+
+        .feature-card h3 {
+          font-size: 6vw;
+        }
+
+        .feature-card p {
+          font-size: 4vw;
+        }
+
+        .product-showcase {
+          height: auto;
+          padding: 10vw 5vw;
+          flex-direction: column;
+        }
+
+        .showcase-content {
+          width: 100%;
+          margin-bottom: 5vw;
+        }
+
+        .showcase-content h2 {
+          font-size: 8vw;
+        }
+
+        .showcase-content p {
+          font-size: 4vw;
+        }
+
+        .showcase-image {
+          position: relative;
+          right: auto;
+          width: 100%;
+          height: 50vw;
+          margin-top: 5vw;
+        }
+
+        /* Categories responsive */
+        .categories-header h2 {
+          font-size: 10vw;
+        }
+
+        .categories-header p {
+          width: 100%;
+          font-size: 4vw;
+        }
+
+        .categories-grid {
+          grid-template-columns: 1fr;
+          gap: 5vw;
+        }
+
+        .category-card {
+          height: 80vw;
+        }
+
+        .category-overlay h3 {
+          font-size: 8vw;
+        }
+
+        .category-overlay p {
+          font-size: 4vw;
+        }
+      }
+
+      /* Swiper Styles */
+      .swiper {
+        width: 100%;
+        height: 100%;
+        padding: 2vw 0;
+        position: relative;
+        z-index: 20;
+        margin: 0 auto;
+        overflow: visible;
+      }
+
+      .swiper-wrapper {
+        position: relative;
+        z-index: 20;
+      }
+
+      .swiper-slide {
+        width: 80%;
+        height: 30vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        position: relative;
+        z-index: 20;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(45deg, #3498DB, #2980B9);
+        transform: scale(0.9);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .swiper-slide-active {
+        transform: scale(1);
+      }
+
+      .slide-content {
+        text-align: center;
+        color: white;
+        padding: 2vw;
+        position: relative;
+        z-index: 21;
+      }
+
+      .swiper-pagination {
+        bottom: 1vw !important;
+        position: relative;
+        z-index: 22;
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: white;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+        position: relative;
+        z-index: 22;
+      }
+
+      #page4 {
+        position: relative;
+        z-index: 20;
+        padding: 5vw 0;
+        background: linear-gradient(135deg, #F5F5F5 0%, #E9ECEF 100%);
+        overflow: visible;
+        margin-bottom: 7vw;
+      }
+
+      /* Mobile Menu Styles */
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(248, 249, 250, 0.98);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 5vw;
+        transform: translateY(-100%);
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .mobile-menu.active {
+        transform: translateY(0);
+      }
+
+      .mobile-menu h4 {
+        font-size: 6vw;
+        margin: 5vw 0;
+        text-align: center;
+        color: #2C3E50;
+        background: linear-gradient(45deg, #2C3E50, #3498DB);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .mobile-menu a {
+        color: #34495E;
+        text-decoration: none;
+        display: block;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      .mobile-menu.active a {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .mobile-menu a:nth-child(1) { transition-delay: 0.1s; }
+      .mobile-menu a:nth-child(2) { transition-delay: 0.2s; }
+      .mobile-menu a:nth-child(3) { transition-delay: 0.3s; }
+      .mobile-menu a:nth-child(4) { transition-delay: 0.4s; }
+
+      .menu-close {
+        position: absolute;
+        top: 5vw;
+        right: 5vw;
+        font-size: 8vw;
+        cursor: pointer;
+        color: #2C3E50;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .menu-close:hover {
+        color: #3498DB;
+        transform: rotate(90deg);
+      }
+
+      @media (max-width: 768px) {
+        nav h3 {
+          cursor: pointer;
+        }
+
+        #nav-part2 {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: block;
+        }
+
+        /* Additional Mobile Responsive Styles */
+        .product-hero {
+          padding: 10vw 5vw;
+        }
+
+        .product-hero h1 {
+          font-size: 12vw;
+          line-height: 1.2;
+        }
+
+        .product-hero h3 {
+          font-size: 4vw;
+        }
+
+        .product-grid {
+          grid-template-columns: 1fr;
+          gap: 5vw;
+        }
+
+        .product-card {
+          margin: 0 5vw;
+        }
+
+        .product-image {
+          height: 50vw;
+        }
+
+        .product-info {
+          padding: 5vw;
+        }
+
+        .product-info h3 {
+          font-size: 5vw;
+        }
+
+        .product-info p {
+          font-size: 3.5vw;
+        }
+
+        .spec-item {
+          font-size: 3vw;
+          padding: 1vw 2vw;
+        }
+
+        .product-button {
+          font-size: 3.5vw;
+          padding: 2vw 4vw;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 8vw;
+        }
+
+        .feature-card {
+          padding: 5vw;
+        }
+
+        .feature-icon {
+          height: 15vw;
+          width: 15vw;
+          font-size: 6vw;
+        }
+
+        .feature-card h3 {
+          font-size: 6vw;
+        }
+
+        .feature-card p {
+          font-size: 4vw;
+        }
+
+        .showcase-content {
+          width: 100%;
+          padding: 5vw;
+        }
+
+        .showcase-content h2 {
+          font-size: 8vw;
+        }
+
+        .showcase-content p {
+          font-size: 4vw;
+        }
+
+        .showcase-image {
+          height: 50vw;
+        }
+
+        .swiper-slide {
+          width: 90%;
+          height: 50vw;
+        }
+
+        .slide-content h3 {
+          font-size: 3vw;
+        }
+
+        .slide-content h2 {
+          font-size: 5vw;
+        }
+
+        .slide-content p {
+          font-size: 2.5vw;
+        }
+      }
+
+      /* Common Elements */
+      #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transition: top 0.5s ease;
+      }
+
+      #loader h1 {
+        font-size: 4vw;
+        font-weight: 400;
+        margin: 1vw 0;
+        background: linear-gradient(45deg, #2C3E50, #3498DB);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 2vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        background: rgba(248, 249, 250, 0.98);
+        backdrop-filter: blur(10px);
+      }
+
+      nav h1 {
+        font-size: 2vw;
+        font-weight: 700;
+        color: #2C3E50;
+      }
+
+      nav h1 span {
+        color: #3498DB;
+      }
+
+      #nav-part2 {
+        display: flex;
+        gap: 2vw;
+      }
+
+      #nav-part2 h4 a {
+        color: #34495E;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      #nav-part2 h4 a:hover {
+        color: #3498DB;
+      }
+
+      .menu-toggle {
+        display: none;
+        cursor: pointer;
+        color: #2C3E50;
+      }
+
+      #footer {
+        background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+        padding: 5vw;
+        text-align: center;
+        position: relative;
+      }
+
+      #footer h1 {
+        font-size: 3vw;
+        font-weight: 700;
+        color: #2C3E50;
+        margin-bottom: 2vw;
+      }
+
+      #footer h1 span {
+        color: #3498DB;
+      }
+
+      .copyright {
+        color: #34495E;
+        font-size: 1vw;
+      }
+
+      #page2 {
+        position: relative;
+        z-index: 20;
+        padding: 2vw 0;
+        background: linear-gradient(135deg, #F5F5F5 0%, #E9ECEF 100%);
+        overflow: visible;
+        margin-bottom: 7vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 20vw;
+      }
+
+      #moving-text {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      #hero-shape {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 1000;
+        pointer-events: none;
+        animation: float 8s ease-in-out infinite;
+      }
+
+      #hero-1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 30vw;
+        height: 30vw;
+        background: linear-gradient(45deg, #3498DB, #2980B9);
+        border-radius: 50%;
+        filter: blur(40px);
+        transform: translate(-50%, -50%);
+      }
+
+      #hero-2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 25vw;
+        height: 25vw;
+        background: linear-gradient(45deg, #3498DB, #2980B9);
+        border-radius: 50%;
+        filter: blur(35px);
+        transform: translate(-50%, -50%);
+        opacity: 0.7;
+      }
+
+      #hero-3 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20vw;
+        height: 20vw;
+        background: linear-gradient(45deg, #3498DB, #2980B9);
+        border-radius: 50%;
+        filter: blur(30px);
+        transform: translate(-50%, -50%);
+        opacity: 0.5;
+      }
+
+      @keyframes float {
+        0% { transform: translate(0, 0); }
+        50% { transform: translate(20px, 20px); }
+        100% { transform: translate(0, 0); }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="loader">
+      <h1>CLASSY</h1>
+      <h1>STRONG</h1>
+      <h1>HIGH QUALITY</h1>
+    </div>
+
+    <div id="fixed-image"></div>
+    <div id="main">
+      <!-- Header (Same as original) -->
+      <div id="page1">
+        <nav>
+          <h1>
+            <b>SUN<span style="color: #506680">TUFF</span></b>
+          </h1>
+          <div id="nav-part2">
+            <h4><a href="index.html">Home</a></h4>
+            <h4><a href="newProductsPage.html">Products</a></h4>
+            <h4><a href="about.html">About</a></h4>
+            <h4><a href="contact.html">Contact</a></h4>
+          </div>
+          <h3 class="menu-toggle">Menu</h3>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+          <div class="menu-close">×</div>
+          <h4><a href="index.html">Home</a></h4>
+          <h4><a href="newProductsPage.html">Products</a></h4>
+          <h4><a href="about.html">About</a></h4>
+          <h4><a href="contact.html">Contact</a></h4>
+        </div>
+
+        <!-- Product Hero Section -->
+        <div class="product-hero">
+          <div class="product-hero-content">
+            <div class="product-hero-left">
+              <h3>
+                Premium glass solutions engineered for performance, durability,
+                and aesthetic excellence.
+              </h3>
+            </div>
+            <div class="product-hero-right">
+              <h1>Glass <br />Products <br />Collection</h1>
+            </div>
+          </div>
+        </div>
+
+        <div id="hero-shape">
+          <div id="hero-1"></div>
+          <div id="hero-2"></div>
+          <div id="hero-3"></div>
+        </div>
+        <video autoplay loop muted src="./video.mp4"></video>
+      </div>
+
+      <!-- Product Collection Section -->
+      <div class="product-collection">
+        <div class="collection-header">
+          <h2>Our Premium Collections</h2>
+          <p>
+            Explore our range of high-performance glass products designed for
+            architectural and automotive applications.
+          </p>
+        </div>
+
+        <div class="product-grid">
+          <!-- Product 1 -->
+          <div class="product-card">
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+              <div class="product-badge">PUREVISION™</div>
+            </div>
+            <div class="product-caption" style="--c: #506680aa">
+              PUREVISION™
+            </div>
+            <div class="product-info">
+              <h3>PUREVISION™ Glass</h3>
+              <p>Advanced clarity glass solution for maximum transparency and light transmission.</p>
+              <div class="product-specs">
+                <span class="spec-item">High Clarity</span>
+                <span class="spec-item">UV Protection</span>
+                <span class="spec-item">Energy Efficient</span>
+              </div>
+              <div class="product-cta">
+                <button class="product-button" onclick="window.location.href='productDetails.html?id=purevision'">View Details</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-card">
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+              <div class="product-badge">SOLARSHADE™</div>
+            </div>
+            <div class="product-caption" style="--c: #506680aa">
+              SOLARSHADE™
+            </div>
+            <div class="product-info">
+              <h3>SOLARSHADE™ Energy Glass</h3>
+              <p>Advanced solar control glass that reduces heat while maintaining natural light.</p>
+              <div class="product-specs">
+                <span class="spec-item">Heat Reduction</span>
+                <span class="spec-item">Energy Saving</span>
+                <span class="spec-item">UV Blocking</span>
+              </div>
+              <div class="product-cta">
+                <button class="product-button" onclick="window.location.href='productDetails.html?id=solarshade'">View Details</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-card">
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+              <div class="product-badge">SECURVIEW™</div>
+            </div>
+            <div class="product-caption" style="--c: #506680aa">
+              SECURVIEW™
+            </div>
+            <div class="product-info">
+              <h3>SECURVIEW™ Privacy Glass</h3>
+              <p>Switchable privacy glass that transforms from clear to opaque with the flip of a switch.</p>
+              <div class="product-specs">
+                <span class="spec-item">Smart Glass</span>
+                <span class="spec-item">Instant Privacy</span>
+                <span class="spec-item">Energy Efficient</span>
+              </div>
+              <div class="product-cta">
+                <button class="product-button" onclick="window.location.href='productDetails.html?id=securaview'">View Details</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="product-card">
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+              <div class="product-badge">ECOLUX™</div>
+            </div>
+            <div class="product-caption" style="--c: #506680aa">
+              ECOLUX™
+            </div>
+            <div class="product-info">
+              <h3>ECOLUX™ Sustainable Glass</h3>
+              <p>Environmentally friendly glass made with recycled materials and low-emission coating.</p>
+              <div class="product-specs">
+                <span class="spec-item">Recycled Content</span>
+                <span class="spec-item">Low-E Coating</span>
+                <span class="spec-item">Carbon Neutral</span>
+              </div>
+              <div class="product-cta">
+                <button class="product-button" onclick="window.location.href='productDetails.html?id=ecolux'">View Details</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div class="product-card">
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+              <div class="product-badge">ARMORSHIELD™</div>
+            </div>
+            <div class="product-caption" style="--c: #506680aa">
+              ARMORSHIELD™
+            </div>
+            <div class="product-info">
+              <h3>ARMORSHIELD™ Safety Glass</h3>
+              <p>Laminated safety glass that provides protection against impacts and forced entry.</p>
+              <div class="product-specs">
+                <span class="spec-item">Impact Resistant</span>
+                <span class="spec-item">Security Grade</span>
+                <span class="spec-item">Soundproof</span>
+              </div>
+              <div class="product-cta">
+                <button class="product-button" onclick="window.location.href='productDetails.html?id=armorshield'">View Details</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div class="product-card">
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+              <div class="product-badge">THERMACLEAR™</div>
+            </div>
+            <div class="product-caption" style="--c: #506680aa">
+              THERMACLEAR™
+            </div>
+            <div class="product-info">
+              <h3>THERMACLEAR™ Insulated Glass</h3>
+              <p>Double-glazed units with superior thermal insulation properties for all climates.</p>
+              <div class="product-specs">
+                <span class="spec-item">Thermal Insulation</span>
+                <span class="spec-item">Condensation Control</span>
+                <span class="spec-item">Energy Star Rated</span>
+              </div>
+              <div class="product-cta">
+                <button class="product-button" onclick="window.location.href='productDetails.html?id=thermaclear'">View Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Features Section -->
+      <div class="product-features">
+        <div class="features-header">
+          <h2>Why Choose SunTuff Glass</h2>
+          <p>
+            Our products are engineered to deliver exceptional performance,
+            durability, and aesthetic appeal for both residential and commercial
+            applications.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">✓</div>
+            <h3>Superior Durability</h3>
+            <p>
+              Engineered to withstand extreme conditions while maintaining
+              clarity and structural integrity.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">☀</div>
+            <h3>Energy Efficiency</h3>
+            <p>
+              Advanced coatings reduce energy consumption while maximizing
+              natural light transmission.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🛡</div>
+            <h3>Enhanced Safety</h3>
+            <p>
+              Tempered and laminated options provide superior protection without
+              compromising visibility.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔊</div>
+            <h3>Noise Reduction</h3>
+            <p>
+              Special acoustic formulations create quieter, more peaceful
+              environments.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🌱</div>
+            <h3>Sustainable</h3>
+            <p>
+              Eco-friendly manufacturing processes and recyclable materials
+              reduce environmental impact.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>Aesthetic Excellence</h3>
+            <p>
+              Beautiful designs that enhance architectural aesthetics while
+              delivering performance.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Showcase Section -->
+      <div class="product-showcase">
+        <div class="showcase-content">
+          <h2>PureVision™ Clarity Glass</h2>
+          <p>
+            Our flagship product delivers unparalleled optical clarity with 99%
+            light transmission, making it ideal for applications where true
+            color representation and brightness are essential. The advanced
+            nano-coating provides scratch resistance and easy cleaning while
+            maintaining perfect transparency.
+          </p>
+          <button class="product-button">Explore PureVision™</button>
+        </div>
+        <div
+          class="showcase-image"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+          "
+        ></div>
+      </div>
+
+      <!-- Rest of your existing sections can go here -->
+      <div id="page4">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-color: #506680">
+              <div class="slide-content">
+                <h3>Featured</h3>
+                <h2>PureVision™ Clarity Glass</h2>
+                <p>Experience unparalleled optical clarity with our flagship product</p>
+              </div>
+            </div>
+            <div class="swiper-slide" style="background-color: #3A3A3A">
+              <div class="slide-content">
+                <h3>New</h3>
+                <h2>SolarShade™ Energy Glass</h2>
+                <p>Advanced solar control for optimal energy efficiency</p>
+              </div>
+            </div>
+            <div class="swiper-slide" style="background-color: #1A1A1A">
+              <div class="slide-content">
+                <h3>Innovation</h3>
+                <h2>SecuraView™ Privacy Glass</h2>
+                <p>Smart glass technology for instant privacy control</p>
+              </div>
+            </div>
+            <div class="swiper-slide" style="background-color: #506680">
+              <div class="slide-content">
+                <h3>Award-Winning</h3>
+                <h2>EcoLux™ Sustainable Glass</h2>
+                <p>Environmentally friendly glass solutions</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+
+      <!-- New Added -->
+      <div id="page2">
+        <div id="moving-text">
+          <div class="con">
+            <h1>ARCHITECTURAL</h1>
+            <div id="gola"></div>
+            <h1>AUTOMOTIVE</h1>
+            <div id="gola"></div>
+            <h1>SPECIALTY</h1>
+            <div id="gola"></div>
+          </div>
+          <div class="con">
+            <h1>RESIDENTIAL</h1>
+            <div id="gola"></div>
+            <h1>COMMERCIAL</h1>
+            <div id="gola"></div>
+            <h1>INDUSTRIAL</h1>
+            <div id="gola"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glass Categories Section -->
+      <div class="glass-categories">
+        <div class="categories-header">
+          <h2>Our Glass Solutions</h2>
+          <p>
+            Comprehensive glass technologies for diverse applications, combining
+            innovation with functional excellence.
+          </p>
+        </div>
+
+        <div class="categories-grid">
+          <!-- Architectural Glass -->
+          <div class="category-card">
+            <div
+              class="category-image"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+              "
+            ></div>
+            <div class="category-overlay">
+              <h3>Architectural Glass</h3>
+              <p>
+                High-performance glass solutions for modern buildings, combining
+                energy efficiency with stunning design.
+              </p>
+            </div>
+          </div>
+
+          <!-- Automotive Glass -->
+          <div class="category-card">
+            <div
+              class="category-image"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+              "
+            ></div>
+            <div class="category-overlay">
+              <h3>Automotive Glass</h3>
+              <p>
+                Advanced automotive glass technologies for safety, comfort, and
+                superior optical clarity.
+              </p>
+            </div>
+          </div>
+
+          <!-- Specialty Glass -->
+          <div class="category-card">
+            <div
+              class="category-image"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+              "
+            ></div>
+            <div class="category-overlay">
+              <h3>Specialty Glass</h3>
+              <p>
+                Custom glass solutions for unique applications, from
+                bullet-resistant to smart glass technologies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer (Same as original) -->
+    <div id="footer">
+      <div id="footer-div"></div>
+      <h1>SunTuFF</h1>
+      <div id="footer-bottom">
+        <div class="copyright">
+          © 2024 Sun Tuff Pvt Ltd. All rights reserved.
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      // Initialize Locomotive Scroll
+      const scroll = new LocomotiveScroll({
+        el: document.querySelector("#main"),
+        smooth: true,
+      });
+
+      // Initialize Swiper with improved configuration
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: "auto",
+        centeredSlides: true,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
+        speed: 800,
+        effect: "coverflow",
+        coverflowEffect: {
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2,
+          slideShadows: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          dynamicBullets: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: "auto",
+            spaceBetween: 30,
+          }
+        },
+        on: {
+          init: function () {
+            this.slides.forEach(slide => {
+              slide.style.transition = "transform 0.5s ease";
+            });
+          },
+          slideChange: function () {
+            this.slides.forEach(slide => {
+              slide.style.transform = "scale(1)";
+            });
+            this.slides[this.activeIndex].style.transform = "scale(1.05)";
+          }
+        }
+      });
+
+      // Loader animation
+      setTimeout(function () {
+        document.getElementById("loader").style.top = "-100%";
+      }, 3000);
+
+      // Add touch support for mobile devices
+      document.querySelectorAll(".product-card").forEach((card) => {
+        card.addEventListener("touchstart", function () {
+          if (this.style.transform === "translateY(-10px)") {
+            this.style.transform = "translateY(0)";
+          } else {
+            this.style.transform = "translateY(-10px)";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

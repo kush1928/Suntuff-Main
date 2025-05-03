@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Sun-Tuff</title>
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <div id="loader">
+        <h1>CONNECT</h1>
+        <h1>COLLABORATE</h1>
+        <h1>CREATE</h1>
+    </div>
+
+    <div id="main">
+        <div id="page1">
+            <nav>
+                <h1><b>SUN<span style="color: #506680">TUFF</span></b></h1>
+                <div id="nav-part2">
+                    <h4><a href="index.html">Home</a></h4>
+                    <h4><a href="newProductsPage.html">Products</a></h4>
+                    <h4><a href="about.html">About</a></h4>
+                    <h4><a href="contact.html">Contact</a></h4>
+                </div>
+                <h3 class="menu-toggle">Menu</h3>
+            </nav>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu">
+                <div class="menu-close">×</div>
+                <h4><a href="index.html">Home</a></h4>
+                <h4><a href="newProductsPage.html">Products</a></h4>
+                <h4><a href="about.html">About</a></h4>
+                <h4><a href="contact.html">Contact</a></h4>
+            </div>
+
+            <div class="contact-hero">
+                <div class="hero-content">
+                    <h1>Let's Build Something <br> Extraordinary Together</h1>
+                    <p>Whether you're looking for innovative glass solutions or have a specific project in mind, our team is ready to help bring your vision to life.</p>
+                </div>
+                <div class="hero-shapes">
+                    <div class="shape-1"></div>
+                    <div class="shape-2"></div>
+                    <div class="shape-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="icon">📍</div>
+                        <h3>Our Location</h3>
+                        <p>123 Glass Innovation Drive<br>Tech Park, Silicon Valley<br>California, USA</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">📞</div>
+                        <h3>Phone</h3>
+                        <p>+1 (555) 123-4567<br>+1 (555) 987-6543</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">✉️</div>
+                        <h3>Email</h3>
+                        <p>info@suntuff.com<br>support@suntuff.com</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">⏰</div>
+                        <h3>Business Hours</h3>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: Closed</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2>Get in Touch</h2>
+                    <form id="inquiryForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="inquiryType" name="inquiryType" required>
+                                <option value="" disabled selected>Select Inquiry Type</option>
+                                <option value="product">Product Information</option>
+                                <option value="project">Project Consultation</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="partnership">Partnership Inquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group product-select" style="display: none;">
+                            <select id="productType" name="productType">
+                                <option value="" disabled selected>Select Product</option>
+                                <option value="purevision">PUREVISION™</option>
+                                <option value="solarshade">SOLARSHADE™</option>
+                                <option value="securview">SECURVIEW™</option>
+                                <option value="ecolux">ECOLUX™</option>
+                                <option value="privacyguard">PRIVACYGUARD™</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <div class="form-group file-upload">
+                            <label for="attachments">Attach Project Files (Optional)</label>
+                            <input type="file" id="attachments" name="attachments" multiple>
+                            <small>Max file size: 10MB. Supported formats: PDF, JPG, PNG</small>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <div class="map-container">
+                <div class="map-overlay"></div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.311119319928!2d-122.084249924123!3d37.422065979752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fba02425dad8f%3A0x6c296c66619367e0!2sGoogleplex!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>What types of glass products do you offer?</h3>
+                    <p>We offer a comprehensive range of specialized glass solutions including PUREVISION™ for maximum clarity, SOLARSHADE™ for solar control, SECURVIEW™ for security applications, ECOLUX™ for energy efficiency, and PRIVACYGUARD™ for privacy needs.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How do I request product information?</h3>
+                    <p>You can request detailed product information through our contact form. Simply select "Product Information" as your inquiry type and specify the product you're interested in. Our team will provide comprehensive details about specifications, applications, and technical data.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do you provide technical support?</h3>
+                    <p>Yes, we offer comprehensive technical support for all our products. Our team of experts can assist with installation guidance, technical specifications, and application recommendations. Select "Technical Support" in the contact form to get in touch with our technical team.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I request a project consultation?</h3>
+                    <p>Absolutely! We offer project consultation services to help you select the right glass solutions for your specific needs. Our team can provide recommendations based on your project requirements, location, and desired outcomes. Use the contact form to request a consultation.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What information should I include in my inquiry?</h3>
+                    <p>For the most effective response, please include details about your project requirements, intended application, dimensions, and any specific performance criteria. You can also attach relevant project files or specifications to help us better understand your needs.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How long does it take to receive a response?</h3>
+                    <p>We typically respond to all inquiries within 24-48 hours during business days. For urgent matters, please indicate this in your message, and we'll prioritize your request accordingly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div id="footer-div"></div>
+        <h1>SunTuFF</h1>
+        <div id="footer-bottom">
+            <div class="copyright">
+                © 2024 Sun Tuff Pvt Ltd. All rights reserved.
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script>
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector('#main'),
+            smooth: true
+        });
+
+        // Loader animation
+        setTimeout(function() {
+            document.getElementById("loader").style.top = "-100%";
+        }, 3000);
+
+        // Form handling
+        document.getElementById('inquiryType').addEventListener('change', function() {
+            const productSelect = document.querySelector('.product-select');
+            if (this.value === 'product' || this.value === 'project') {
+                productSelect.style.display = 'block';
+            } else {
+                productSelect.style.display = 'none';
+            }
+        });
+
+        document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic form validation
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Here you would typically send the data to your backend
+            console.log('Form submitted:', data);
+            
+            // Show success message
+            alert('Thank you for your inquiry! Our team will get back to you shortly.');
+            this.reset();
+        });
+    </script>
+</body>
+</html> 
