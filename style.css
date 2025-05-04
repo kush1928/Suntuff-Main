@@ -739,3 +739,446 @@ button:hover::before {
 button:active {
     transform: translateY(1px);
 }
+
+/* Custom Cursor Styles */
+.cursor {
+    width: 15px;
+    height: 15px;
+    background: #3498DB;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease, width 0.1s ease, height 0.1s ease;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+.cursor.active {
+    width: 30px;
+    height: 30px;
+    background: #2980B9;
+    box-shadow: 0 0 15px rgba(41, 128, 185, 0.7);
+}
+
+/* Remove cursor-follower styles */
+.cursor-follower {
+    display: none;
+}
+
+/* Add cursor styles to interactive elements */
+a, button, .product-card, .team-card, .value-card, .stat-card, .cta-button, .menu-toggle, .menu-close {
+    cursor: none;
+}
+
+a:hover ~ .cursor,
+button:hover ~ .cursor,
+.product-card:hover ~ .cursor,
+.team-card:hover ~ .cursor,
+.value-card:hover ~ .cursor,
+.stat-card:hover ~ .cursor,
+.cta-button:hover ~ .cursor,
+.menu-toggle:hover ~ .cursor,
+.menu-close:hover ~ .cursor {
+    width: 30px;
+    height: 30px;
+    background: #2980B9;
+    box-shadow: 0 0 15px rgba(41, 128, 185, 0.7);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    /* Base Layout Adjustments */
+    #main {
+        padding: 0;
+    }
+
+    /* Navigation */
+    nav {
+        padding: 4vw;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav h1 {
+        font-size: 6vw;
+        margin-bottom: 2vw;
+    }
+
+    #nav-part2 {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 4vw;
+        right: 4vw;
+        font-size: 5vw;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+        display: block;
+        padding: 10vw 5vw;
+    }
+
+    .mobile-menu h4 {
+        font-size: 5vw;
+        margin: 3vw 0;
+    }
+
+    .menu-close {
+        font-size: 8vw;
+        top: 4vw;
+        right: 4vw;
+    }
+
+    /* Typography */
+    h1 {
+        font-size: 8vw;
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 6vw;
+        line-height: 1.3;
+    }
+
+    h3 {
+        font-size: 5vw;
+        line-height: 1.4;
+    }
+
+    p {
+        font-size: 4vw;
+        line-height: 1.6;
+    }
+
+    /* Sections */
+    .section-header {
+        font-size: 8vw;
+        margin-bottom: 4vw;
+    }
+
+    .section-description {
+        font-size: 4vw;
+        margin-bottom: 6vw;
+    }
+
+    /* Grid Layouts */
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 6vw;
+    }
+
+    /* Cards */
+    .card {
+        padding: 6vw;
+    }
+
+    /* Buttons */
+    button, .button {
+        padding: 3vw 6vw;
+        font-size: 4vw;
+    }
+
+    /* Forms */
+    input, textarea, select {
+        padding: 3vw;
+        font-size: 4vw;
+    }
+
+    /* Product Cards */
+    .product-card {
+        margin: 0 4vw;
+    }
+
+    .product-image {
+        height: 50vw;
+    }
+
+    .product-info {
+        padding: 4vw;
+    }
+
+    /* Team Cards */
+    .team-card {
+        margin: 0 4vw;
+    }
+
+    .team-image {
+        height: 60vw;
+    }
+
+    /* Value Cards */
+    .value-card {
+        margin: 0 4vw;
+        padding: 6vw;
+    }
+
+    /* Stats */
+    .stat-card {
+        margin: 0 4vw;
+    }
+
+    .stat-number {
+        font-size: 12vw;
+    }
+
+    /* Footer */
+    #footer {
+        padding: 8vw 4vw;
+    }
+
+    #footer h1 {
+        font-size: 8vw;
+    }
+
+    .copyright {
+        font-size: 3vw;
+    }
+
+    /* Cursor */
+    .cursor {
+        width: 20px;
+        height: 20px;
+    }
+
+    .cursor.active {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Loader */
+    #loader h1 {
+        font-size: 8vw;
+    }
+
+    /* Hero Sections */
+    .hero-content {
+        padding: 10vw 4vw;
+    }
+
+    .hero-shapes {
+        display: none;
+    }
+
+    /* Contact Form */
+    .contact-form {
+        padding: 6vw;
+    }
+
+    .form-group {
+        margin-bottom: 4vw;
+    }
+
+    /* Map */
+    .map-container {
+        height: 60vh;
+    }
+
+    /* FAQ */
+    .faq-item {
+        padding: 4vw;
+    }
+
+    /* Product Details */
+    .product-details {
+        padding: 4vw;
+    }
+
+    .product-header {
+        flex-direction: column;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 50vw;
+    }
+
+    .product-info {
+        width: 100%;
+        padding: 4vw 0;
+    }
+
+    .product-specs {
+        grid-template-columns: 1fr;
+    }
+
+    .spec-item {
+        padding: 3vw;
+        font-size: 4vw;
+    }
+
+    .feature-item {
+        padding: 3vw;
+    }
+
+    .feature-icon {
+        width: 8vw;
+        height: 8vw;
+        font-size: 4vw;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 3vw;
+    }
+
+    .cta-button {
+        width: 100%;
+        padding: 4vw;
+        font-size: 4vw;
+    }
+
+    /* Swiper */
+    .swiper-slide {
+        width: 80%;
+        padding: 4vw;
+    }
+
+    .swiper-slide img {
+        height: 30vw;
+    }
+
+    .swiper-slide p {
+        font-size: 4vw;
+    }
+}
+
+/* Tablet Responsive Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Navigation */
+    nav {
+        padding: 3vw;
+    }
+
+    nav h1 {
+        font-size: 4vw;
+    }
+
+    #nav-part2 h4 {
+        font-size: 2vw;
+        padding: 1vw 2vw;
+    }
+
+    /* Typography */
+    h1 {
+        font-size: 6vw;
+    }
+
+    h2 {
+        font-size: 4vw;
+    }
+
+    h3 {
+        font-size: 3vw;
+    }
+
+    p {
+        font-size: 2vw;
+    }
+
+    /* Grid Layouts */
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4vw;
+    }
+
+    /* Cards */
+    .card {
+        padding: 4vw;
+    }
+
+    /* Buttons */
+    button, .button {
+        padding: 2vw 4vw;
+        font-size: 2vw;
+    }
+
+    /* Product Cards */
+    .product-card {
+        margin: 0 2vw;
+    }
+
+    .product-image {
+        height: 30vw;
+    }
+
+    /* Team Cards */
+    .team-card {
+        margin: 0 2vw;
+    }
+
+    .team-image {
+        height: 40vw;
+    }
+
+    /* Footer */
+    #footer {
+        padding: 6vw 3vw;
+    }
+
+    #footer h1 {
+        font-size: 6vw;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    /* Navigation */
+    nav {
+        padding: 5vw;
+    }
+
+    nav h1 {
+        font-size: 7vw;
+    }
+
+    /* Typography */
+    h1 {
+        font-size: 9vw;
+    }
+
+    h2 {
+        font-size: 7vw;
+    }
+
+    h3 {
+        font-size: 6vw;
+    }
+
+    p {
+        font-size: 4.5vw;
+    }
+
+    /* Cards */
+    .card {
+        padding: 8vw;
+    }
+
+    /* Buttons */
+    button, .button {
+        padding: 4vw 8vw;
+        font-size: 4.5vw;
+    }
+
+    /* Product Cards */
+    .product-card {
+        margin: 0 5vw;
+    }
+
+    .product-image {
+        height: 60vw;
+    }
+
+    /* Footer */
+    #footer {
+        padding: 10vw 5vw;
+    }
+
+    #footer h1 {
+        font-size: 9vw;
+    }
+}

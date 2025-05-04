@@ -3,7 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#3498DB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>About SunTuff</title>
     <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
@@ -20,6 +23,7 @@
     </div>
     
     <div id="fixed-image"></div>
+    <div class="cursor"></div>
     <div id="main">
         <div id="page1">
             <nav>
@@ -254,17 +258,60 @@
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        // Custom cursor movement
+        const cursor = document.querySelector('.cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        
+        // Add active class on click
+        document.addEventListener('mousedown', () => {
+            cursor.classList.add('active');
+        });
+        
+        document.addEventListener('mouseup', () => {
+            cursor.classList.remove('active');
+        });
+        
+        // Add active class on hover for interactive elements
+        document.querySelectorAll('a, button, .product-card, .team-card, .value-card, .stat-card, .cta-button, .menu-toggle, .menu-close').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                cursor.classList.add('active');
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                cursor.classList.remove('active');
+            });
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const menuClose = document.querySelector('.menu-close');
+
+        if (menuToggle && mobileMenu && menuClose) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
+
+            menuClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        }
+
+        // Initialize Locomotive Scroll
         const scroll = new LocomotiveScroll({
-            el: document.querySelector('#main'),
+            el: document.querySelector("#main"),
             smooth: true,
-            lerp: 0.05,
-            getDirection: true,
-            smartphone: {
-                smooth: true
-            },
-            tablet: {
-                smooth: true
-            }
         });
 
         // Lazy Loading Observer
