@@ -246,80 +246,26 @@
     </div>
    
     <div id="footer">
-        <div id="footer-div"></div>
+        <div id="footer-div">
+
+        </div>
         <h1>SunTuFF</h1>
         <div id="footer-bottom">
             <div class="copyright">
                 © 2024 Sun Tuff Pvt Ltd. All rights reserved.
-            </div>
+              </div>
         </div>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
     <script>
-        // Custom cursor movement
-        const cursor = document.querySelector('.cursor');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-        
-        // Add active class on click
-        document.addEventListener('mousedown', () => {
-            cursor.classList.add('active');
-        });
-        
-        document.addEventListener('mouseup', () => {
-            cursor.classList.remove('active');
-        });
-        
-        // Add active class on hover for interactive elements
-        document.querySelectorAll('a, button, .product-card, .team-card, .value-card, .stat-card, .cta-button, .menu-toggle, .menu-close').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                cursor.classList.add('active');
-            });
-            
-            item.addEventListener('mouseleave', () => {
-                cursor.classList.remove('active');
-            });
-        });
-
-        // Mobile Menu Toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const menuClose = document.querySelector('.menu-close');
-
-        if (menuToggle && mobileMenu && menuClose) {
-            menuToggle.addEventListener('click', () => {
-                mobileMenu.classList.add('active');
-            });
-
-            menuClose.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-                    mobileMenu.classList.remove('active');
-                }
-            });
-        }
-
-        // Initialize Locomotive Scroll
-        const scroll = new LocomotiveScroll({
-            el: document.querySelector("#main"),
-            smooth: true,
-        });
-
-        // Lazy Loading Observer
+        // Lazy Loading Observer and unique about page logic
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    
                     // Animate counting numbers for stats
                     if (entry.target.classList.contains('stat-card')) {
                         const numberElement = entry.target.querySelector('.stat-number');
@@ -327,7 +273,6 @@
                         const duration = 2000;
                         const start = 0;
                         const increment = target / (duration / 16);
-                        
                         let current = start;
                         const timer = setInterval(() => {
                             current += increment;
@@ -338,7 +283,6 @@
                             numberElement.textContent = Math.floor(current);
                         }, 16);
                     }
-                    
                     lazyLoadObserver.unobserve(entry.target);
                 }
             });
@@ -346,36 +290,11 @@
             threshold: 0.1,
             rootMargin: '0px 0px 100px 0px'
         });
-
         document.addEventListener('DOMContentLoaded', function() {
             // Observe all lazy-load elements
             document.querySelectorAll('.timeline-item, .team-card, .value-card, .stat-card').forEach(el => {
                 lazyLoadObserver.observe(el);
             });
-            
-            // Initialize other animations
-            const loader = document.querySelector("#loader");
-            setTimeout(function() {
-                if(loader) loader.style.top = "-100%";
-            }, 4200);
-            
-            // Menu animation
-            const menu = document.querySelector("nav h3");
-            const full = document.querySelector("#full-scr");
-            let flag = 0;
-            
-            if(menu && full) {
-                menu.addEventListener("click", function() {
-                    if (flag == 0) {
-                        full.style.top = "0";
-                        flag = 1;
-                    } else {
-                        full.style.top = "-100%";
-                        flag = 0;
-                    }
-                });
-            }
-            
             // Add floating elements dynamically
             const floatingContainer = document.querySelector('.about-hero');
             for (let i = 0; i < 3; i++) {
@@ -388,7 +307,6 @@
                 floatingEl.style.opacity = 0.1 + Math.random() * 0.2;
                 floatingContainer.appendChild(floatingEl);
             }
-
             // Add animation to value cards on hover
             document.querySelectorAll('.value-card').forEach(card => {
                 card.addEventListener('mouseenter', () => {

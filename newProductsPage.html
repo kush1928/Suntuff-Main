@@ -19,19 +19,6 @@
     <link rel="stylesheet" href="style.css">
     <style>
       /* Product Page Specific Styles */
-      #main {
-        position: relative;
-        background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
-        overflow: hidden;
-      }
-
-      #page1 {
-        position: relative;
-        height: 100vh;
-        background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
-        overflow: hidden;
-      }
-
       .product-hero {
         height: 100vh;
         display: flex;
@@ -454,7 +441,7 @@
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       }
 
-      /* New Glass Categories Section */
+      /* Glass Categories Section */
       .glass-categories {
         padding: 5vw 5vw;
         background: linear-gradient(135deg, #F5F5F5 0%, #E9ECEF 100%);
@@ -568,8 +555,7 @@
         .product-hero h1 {
           text-align: center;
           font-size: 12vw;
-          line-height: 11vw;
-          margin-bottom: 5vw;
+          line-height: 1.2;
         }
 
         .product-hero h3 {
@@ -1003,29 +989,6 @@
         color: #2C3E50;
       }
 
-      #footer {
-        background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
-        padding: 5vw;
-        text-align: center;
-        position: relative;
-      }
-
-      #footer h1 {
-        font-size: 3vw;
-        font-weight: 700;
-        color: #2C3E50;
-        margin-bottom: 2vw;
-      }
-
-      #footer h1 span {
-        color: #3498DB;
-      }
-
-      .copyright {
-        color: #34495E;
-        font-size: 1vw;
-      }
-
       #page2 {
         position: relative;
         z-index: 20;
@@ -1046,59 +1009,93 @@
         text-align: center;
       }
 
-      #hero-shape {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        z-index: 1000;
-        pointer-events: none;
-        animation: float 8s ease-in-out infinite;
-      }
+      .hero-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+}
 
-      #hero-1 {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 30vw;
-        height: 30vw;
-        background: linear-gradient(45deg, #3498DB, #2980B9);
-        border-radius: 50%;
-        filter: blur(40px);
-        transform: translate(-50%, -50%);
-      }
+.hero-shape-1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30vw;
+    height: 30vw;
+    background: linear-gradient(45deg, #3498DB, #2980B9);
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.8;
+    transform: translate(-50%, -50%);
+}
 
-      #hero-2 {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 25vw;
-        height: 25vw;
-        background: linear-gradient(45deg, #3498DB, #2980B9);
-        border-radius: 50%;
-        filter: blur(35px);
-        transform: translate(-50%, -50%);
-        opacity: 0.7;
-      }
+.hero-shape-2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25vw;
+    height: 25vw;
+    background: linear-gradient(45deg, #3498DB, #2980B9);
+    border-radius: 50%;
+    filter: blur(35px);
+    opacity: 0.7;
+    transform: translate(-50%, -50%);
+}
 
-      #hero-3 {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 20vw;
-        height: 20vw;
-        background: linear-gradient(45deg, #3498DB, #2980B9);
-        border-radius: 50%;
-        filter: blur(30px);
-        transform: translate(-50%, -50%);
-        opacity: 0.5;
-      }
+.hero-shape-3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20vw;
+    height: 20vw;
+    background: linear-gradient(45deg, #3498DB, #2980B9);
+    border-radius: 50%;
+    filter: blur(30px);
+    opacity: 0.5;
+    transform: translate(-50%, -50%);
+}
 
       @keyframes float {
         0% { transform: translate(0, 0); }
         50% { transform: translate(20px, 20px); }
         100% { transform: translate(0, 0); }
+      }
+
+      /* --- Footer override for normal flow --- */
+      #footer {
+        position: static !important;
+        height: auto !important;
+        background-color: #2C3E50;
+        color: #F8F9FA;
+        width: 100%;
+        padding: 2vw 0 0 0;
+        display: block;
+      }
+      #footer h1 {
+        font-size: 3vw;
+        background: none;
+        color: #F8F9FA;
+        -webkit-text-fill-color: #F8F9FA;
+        text-shadow: none;
+        text-align: center;
+      }
+      #footer-div {
+        display: none;
+      }
+      #footer-bottom {
+        border-top: 1px solid rgba(248, 249, 250, 0.1);
+        height: auto;
+        width: 100%;
+      }
+      .copyright {
+        color: #F8F9FA;
+        font-size: 1vw;
+        text-align: center;
+        padding: 1vw;
       }
     </style>
   </head>
@@ -1157,7 +1154,6 @@
           <div id="hero-2"></div>
           <div id="hero-3"></div>
         </div>
-        <video autoplay loop muted src="./video.mp4"></video>
       </div>
 
       <!-- Product Collection Section -->
@@ -1374,7 +1370,7 @@
       </div>
 
       <!-- Product Showcase Section -->
-      <div class="product-showcase">
+      <!--<div class="product-showcase">
         <div class="showcase-content">
           <h2>PureVision™ Clarity Glass</h2>
           <p>
@@ -1392,7 +1388,7 @@
             background-image: url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
           "
         ></div>
-      </div>
+      </div>-->
 
       <!-- Update the Swiper Section -->
       <div id="page4">
@@ -1526,123 +1522,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
     <script>
-        // Custom cursor movement
-        const cursor = document.querySelector('.cursor');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-        
-        // Add active class on click
-        document.addEventListener('mousedown', () => {
-            cursor.classList.add('active');
-        });
-        
-        document.addEventListener('mouseup', () => {
-            cursor.classList.remove('active');
-        });
-        
-        // Add active class on hover for interactive elements
-        document.querySelectorAll('a, button, .product-card, .team-card, .value-card, .stat-card, .cta-button, .menu-toggle, .menu-close').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                cursor.classList.add('active');
-            });
-            
-            item.addEventListener('mouseleave', () => {
-                cursor.classList.remove('active');
-            });
-        });
-
-        // Mobile Menu Toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const menuClose = document.querySelector('.menu-close');
-
-        if (menuToggle && mobileMenu && menuClose) {
-            menuToggle.addEventListener('click', () => {
-                mobileMenu.classList.add('active');
-            });
-
-            menuClose.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-                    mobileMenu.classList.remove('active');
-                }
-            });
-        }
-
-        // Initialize Locomotive Scroll
-        const scroll = new LocomotiveScroll({
-            el: document.querySelector("#main"),
-            smooth: true,
-        });
-
-        // Initialize Swiper with improved configuration
-        var swiper = new Swiper(".mySwiper", {
-          slidesPerView: "auto",
-          centeredSlides: true,
-          spaceBetween: 30,
-          loop: true,
-          autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          },
-          speed: 800,
-          effect: "coverflow",
-          coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 100,
-            modifier: 2,
-            slideShadows: false,
-          },
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-            dynamicBullets: true,
-          },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-          breakpoints: {
-            320: {
-              slidesPerView: 1,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: "auto",
-              spaceBetween: 30,
-            }
-          },
-          on: {
-            init: function () {
-              this.slides.forEach(slide => {
-                slide.style.transition = "transform 0.5s ease";
-              });
-            },
-            slideChange: function () {
-              this.slides.forEach(slide => {
-                slide.style.transform = "scale(1)";
-              });
-              this.slides[this.activeIndex].style.transform = "scale(1.05)";
-            }
-          }
-        });
-
-        // Loader animation
-        setTimeout(function () {
-          document.getElementById("loader").style.top = "-100%";
-        }, 3000);
-
-        // Add touch support for mobile devices
+        // Add touch support for mobile devices (unique to this page)
         document.querySelectorAll(".product-card").forEach((card) => {
           card.addEventListener("touchstart", function () {
             if (this.style.transform === "translateY(-10px)") {

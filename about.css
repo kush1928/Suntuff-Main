@@ -720,6 +720,7 @@
     background: linear-gradient(45deg, #3498DB, #2980B9);
     border-radius: 50%;
     filter: blur(40px);
+    opacity: 0.8;
     transform: translate(-50%, -50%);
 }
 
@@ -732,8 +733,8 @@
     background: linear-gradient(45deg, #3498DB, #2980B9);
     border-radius: 50%;
     filter: blur(35px);
-    transform: translate(-50%, -50%);
     opacity: 0.7;
+    transform: translate(-50%, -50%);
 }
 
 .hero-shape-3 {
@@ -745,29 +746,30 @@
     background: linear-gradient(45deg, #3498DB, #2980B9);
     border-radius: 50%;
     filter: blur(30px);
-    transform: translate(-50%, -50%);
     opacity: 0.5;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes float {
-    0% { transform: translate(0, 0); }
-    50% { transform: translate(20px, 20px); }
-    100% { transform: translate(0, 0); }
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(20px, 20px) rotate(5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
 }
 
 /* Floating elements */
 .floating-element {
     position: absolute;
-    background-color: rgba(101, 139, 56, 0.1);
+    background-color: rgba(52, 152, 219, 0.1);
     border-radius: 50%;
     filter: blur(30px);
     z-index: 0;
-    animation: float 8s infinite ease-in-out alternate;
+    animation: floatElement 8s infinite ease-in-out alternate;
 }
 
-@keyframes float {
+@keyframes floatElement {
     0% { transform: translateY(0) rotate(0deg); }
-    100% { transform: translateY(-20px) rotate(5deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
 }
 
 /* Responsive Styles */
@@ -892,14 +894,22 @@
     }
     
     .hero-shapes {
-        width: 80vw;
-        height: 60vw;
-        top: 50vh;
+        display: block;
     }
 
-    .hero-shape-2, .hero-shape-3 {
-        height: 40vw;
+    .hero-shape-1 {
         width: 40vw;
+        height: 40vw;
+    }
+
+    .hero-shape-2 {
+        width: 35vw;
+        height: 35vw;
+    }
+
+    .hero-shape-3 {
+        width: 30vw;
+        height: 30vw;
     }
     
     .timeline-content, .team-card, .value-card, .stat-card {
