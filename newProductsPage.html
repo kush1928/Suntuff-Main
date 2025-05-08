@@ -124,7 +124,7 @@
 
       .product-collection {
         padding: 10vw 5vw;
-        background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);
+        background: linear-gradient(135deg, #1a1a1a 0%, #2C3E50 100%);
         position: relative;
       }
 
@@ -140,15 +140,15 @@
         font-size: 4vw;
         font-weight: 400;
         margin-bottom: 1vw;
-        color: #2C3E50;
-        background: linear-gradient(45deg, #2C3E50, #3498DB);
+        color: #FFFFFF;
+        background: linear-gradient(45deg, #FFFFFF, #3498DB);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
       .collection-header p {
         font-size: 1.2vw;
-        color: #34495E;
+        color: #E9ECEF;
         line-height: 1.6;
       }
 
@@ -733,81 +733,10 @@
             font-size: 1.2vw;
             line-height: 1.6;
       }
-      /* Mobile Menu Styles */
-      .mobile-menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: rgba(248, 249, 250, 0.98);
-        backdrop-filter: blur(10px);
-        z-index: 1000;
-        padding: 5vw;
-        transform: translateY(-100%);
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .mobile-menu.active {
-        transform: translateY(0);
-      }
-
-      .mobile-menu h4 {
-        font-size: 6vw;
-        margin: 5vw 0;
-        text-align: center;
-        color: #2C3E50;
-        background: linear-gradient(45deg, #2C3E50, #3498DB);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .mobile-menu a {
-        color: #34495E;
-        text-decoration: none;
-        display: block;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        opacity: 0;
-        transform: translateX(-20px);
-      }
-
-      .mobile-menu.active a {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      .mobile-menu a:nth-child(1) { transition-delay: 0.1s; }
-      .mobile-menu a:nth-child(2) { transition-delay: 0.2s; }
-      .mobile-menu a:nth-child(3) { transition-delay: 0.3s; }
-      .mobile-menu a:nth-child(4) { transition-delay: 0.4s; }
-
-      .menu-close {
-        position: absolute;
-        top: 5vw;
-        right: 5vw;
-        font-size: 8vw;
-        cursor: pointer;
-        color: #2C3E50;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .menu-close:hover {
-        color: #3498DB;
-        transform: rotate(90deg);
-      }
 
       @media (max-width: 768px) {
         nav h3 {
           cursor: pointer;
-        }
-
-        #nav-part2 {
-          display: none;
-        }
-
-        .mobile-menu {
-          display: block;
         }
 
         /* Additional Mobile Responsive Styles */
@@ -967,35 +896,13 @@
         color: #3498DB;
       }
 
-      #nav-part2 {
-        display: flex;
-        gap: 2vw;
-      }
-
-      #nav-part2 h4 a {
-        color: #34495E;
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.3s ease;
-      }
-
-      #nav-part2 h4 a:hover {
-        color: #3498DB;
-      }
-
-      .menu-toggle {
-        display: none;
-        cursor: pointer;
-        color: #2C3E50;
-      }
-
       #page2 {
         position: relative;
         z-index: 20;
-        padding: 2vw 0;
         background: linear-gradient(135deg, #F5F5F5 0%, #E9ECEF 100%);
         overflow: visible;
         margin-bottom: 7vw;
+        padding-bottom: 10vw;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1063,39 +970,6 @@
         0% { transform: translate(0, 0); }
         50% { transform: translate(20px, 20px); }
         100% { transform: translate(0, 0); }
-      }
-
-      /* --- Footer override for normal flow --- */
-      #footer {
-        position: static !important;
-        height: auto !important;
-        background-color: #2C3E50;
-        color: #F8F9FA;
-        width: 100%;
-        padding: 2vw 0 0 0;
-        display: block;
-      }
-      #footer h1 {
-        font-size: 3vw;
-        background: none;
-        color: #F8F9FA;
-        -webkit-text-fill-color: #F8F9FA;
-        text-shadow: none;
-        text-align: center;
-      }
-      #footer-div {
-        display: none;
-      }
-      #footer-bottom {
-        border-top: 1px solid rgba(248, 249, 250, 0.1);
-        height: auto;
-        width: 100%;
-      }
-      .copyright {
-        color: #F8F9FA;
-        font-size: 1vw;
-        text-align: center;
-        padding: 1vw;
       }
     </style>
   </head>
@@ -1507,9 +1381,17 @@
           </div>
         </div>
       </div>
+      <div id="page5">
+
+      </div>
+      <div id="full-scr">
+          <div id="full-div1">
+              
+          </div>
+      </div>
     </div>
 
-    <!-- Footer (Same as original) -->
+    </div>  
     <div id="footer">
       <div id="footer-div"></div>
       <h1>SunTuFF</h1>

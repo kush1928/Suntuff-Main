@@ -145,29 +145,67 @@
             <h2>Frequently Asked Questions</h2>
             <div class="faq-grid">
                 <div class="faq-item">
-                    <h3>What types of glass products do you offer?</h3>
-                    <p>We offer a comprehensive range of specialized glass solutions including PUREVISION™ for maximum clarity, SOLARSHADE™ for solar control, SECURVIEW™ for security applications, ECOLUX™ for energy efficiency, and PRIVACYGUARD™ for privacy needs.</p>
+                    <div class="faq-question">
+                        <h3>What types of glass products do you offer?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a comprehensive range of specialized glass solutions including PUREVISION™ for maximum clarity, SOLARSHADE™ for solar control, SECURVIEW™ for security applications, ECOLUX™ for energy efficiency, and PRIVACYGUARD™ for privacy needs.</p>
+                    </div>
                 </div>
                 <div class="faq-item">
-                    <h3>How do I request product information?</h3>
-                    <p>You can request detailed product information through our contact form. Simply select "Product Information" as your inquiry type and specify the product you're interested in. Our team will provide comprehensive details about specifications, applications, and technical data.</p>
+                    <div class="faq-question">
+                        <h3>How do I request product information?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can request detailed product information through our contact form. Simply select "Product Information" as your inquiry type and specify the product you're interested in. Our team will provide comprehensive details about specifications, applications, and technical data.</p>
+                    </div>
                 </div>
                 <div class="faq-item">
-                    <h3>Do you provide technical support?</h3>
-                    <p>Yes, we offer comprehensive technical support for all our products. Our team of experts can assist with installation guidance, technical specifications, and application recommendations. Select "Technical Support" in the contact form to get in touch with our technical team.</p>
+                    <div class="faq-question">
+                        <h3>Do you provide technical support?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer comprehensive technical support for all our products. Our team of experts can assist with installation guidance, technical specifications, and application recommendations. Select "Technical Support" in the contact form to get in touch with our technical team.</p>
+                    </div>
                 </div>
                 <div class="faq-item">
-                    <h3>Can I request a project consultation?</h3>
-                    <p>Absolutely! We offer project consultation services to help you select the right glass solutions for your specific needs. Our team can provide recommendations based on your project requirements, location, and desired outcomes. Use the contact form to request a consultation.</p>
+                    <div class="faq-question">
+                        <h3>Can I request a project consultation?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We offer project consultation services to help you select the right glass solutions for your specific needs. Our team can provide recommendations based on your project requirements, location, and desired outcomes. Use the contact form to request a consultation.</p>
+                    </div>
                 </div>
                 <div class="faq-item">
-                    <h3>What information should I include in my inquiry?</h3>
-                    <p>For the most effective response, please include details about your project requirements, intended application, dimensions, and any specific performance criteria. You can also attach relevant project files or specifications to help us better understand your needs.</p>
+                    <div class="faq-question">
+                        <h3>What information should I include in my inquiry?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For the most effective response, please include details about your project requirements, intended application, dimensions, and any specific performance criteria. You can also attach relevant project files or specifications to help us better understand your needs.</p>
+                    </div>
                 </div>
                 <div class="faq-item">
-                    <h3>How long does it take to receive a response?</h3>
-                    <p>We typically respond to all inquiries within 24-48 hours during business days. For urgent matters, please indicate this in your message, and we'll prioritize your request accordingly.</p>
+                    <div class="faq-question">
+                        <h3>How long does it take to receive a response?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We typically respond to all inquiries within 24-48 hours during business days. For urgent matters, please indicate this in your message, and we'll prioritize your request accordingly.</p>
+                    </div>
                 </div>
+            </div>
+        </div>
+        <div id="page5">
+
+        </div>
+        <div id="full-scr">
+            <div id="full-div1">
+                
             </div>
         </div>
     </div>
@@ -196,6 +234,35 @@
                 productSelect.style.display = 'none';
             }
         });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const answer = question.nextElementSibling;
+                const toggle = question.querySelector('.faq-toggle');
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                        item.querySelector('.faq-answer').style.maxHeight = null;
+                        item.querySelector('.faq-toggle').textContent = '+';
+                    }
+                });
+
+                // Toggle current FAQ
+                faqItem.classList.toggle('active');
+                if (faqItem.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                    toggle.textContent = '−';
+                } else {
+                    answer.style.maxHeight = null;
+                    toggle.textContent = '+';
+                }
+            });
+        });
+
         document.getElementById('inquiryForm').addEventListener('submit', function(e) {
             e.preventDefault();
             // Basic form validation
@@ -208,5 +275,62 @@
             this.reset();
         });
     </script>
+    <style>
+        .faq-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f8f9fa;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #e9ecef;
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .faq-toggle {
+            font-size: 1.5em;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+        }
+
+        .faq-answer p {
+            margin: 0;
+            padding: 20px 0;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .faq-item.active {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .faq-item.active .faq-question {
+            background-color: #e9ecef;
+        }
+    </style>
 </body>
 </html> 

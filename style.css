@@ -245,30 +245,37 @@ nav h3 {
     justify-content: space-between;
     position: relative;
     z-index: 9;
+    gap: 4vw;
 }
 
 #page2-bottom h1 {
-    font-size: 4vw;
-    width: 60%;
-    line-height: 4vw;
+    font-size: 3vw;
+    width: 50%;
+    line-height: 1.4;
     color: #2C3E50;
+    font-weight: 400;
 }
 
 #bottom-part2 {
-    width: 20%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
 }
 
 #bottom-part2 img {
     width: 100%;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    aspect-ratio: 16/9;
+    object-fit: cover;
 }
 
 #bottom-part2 p {
-    font-weight: 200;
-    margin-top: 2vw;
-    font-size: 1vw;
+    font-weight: 300;
+    font-size: 1.1vw;
     color: #2C3E50;
+    line-height: 1.6;
 }
 
 #page2 #gooey {
@@ -299,22 +306,31 @@ nav h3 {
     width: 100%;
     background-color: #F8F9FA;
     padding: 4vw 0;
+    position: relative;
+    z-index: 9;
+}
+
+#elem-container {
+    position: relative;
+    z-index: 9;
 }
 
 .elem {
     height: 150px;
     width: 100%;
     position: relative;
-    border-bottom: 1px solid #2C3E50;
+    border-bottom: 1px solid rgba(52, 152, 219, 0.1);
     overflow: hidden;
     display: flex;
     align-items: center;
     padding: 0 2vw;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(to right, rgba(52, 152, 219, 0.02), transparent);
 }
 
 .elem:hover {
-    background-color: rgba(52, 152, 219, 0.05);
+    background: linear-gradient(to right, rgba(52, 152, 219, 0.05), transparent);
+    transform: translateX(10px);
 }
 
 .elem h2 {
@@ -322,21 +338,46 @@ nav h3 {
     position: relative;
     z-index: 9;
     color: #2C3E50;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 400;
+}
+
+.elem:hover h2 {
+    color: #3498DB;
+    transform: translateX(10px);
 }
 
 .elem .overlay {
     height: 100%;
     width: 100%;
-    background-color: #3498DB;
+    background: linear-gradient(90deg, rgba(52, 152, 219, 0.1), transparent);
     position: absolute;
     left: 0;
     top: -100%;
-    transition: all ease 0.25s;
-    opacity: 0.1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
 }
 
 .elem:hover .overlay {
     top: 0;
+    opacity: 1;
+}
+
+.elem::after {
+    content: '';
+    position: absolute;
+    right: 2vw;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(52, 152, 219, 0.2);
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.elem:hover::after {
+    background: #3498DB;
+    border-color: #3498DB;
+    transform: scale(1.2);
 }
 
 #fixed-image {
@@ -713,6 +754,49 @@ nav h3 {
 
     .mobile-menu {
         display: block;
+    }
+
+    .elem {
+        height: 120px;
+        padding: 0 4vw;
+    }
+
+    .elem h2 {
+        font-size: 6vw;
+    }
+
+    .elem::after {
+        width: 15px;
+        height: 15px;
+        right: 4vw;
+    }
+
+    #page2-bottom {
+        height: auto;
+        padding: 8vw 5vw;
+        flex-direction: column;
+        gap: 6vw;
+    }
+
+    #page2-bottom h1 {
+        font-size: 6vw;
+        width: 100%;
+        line-height: 1.3;
+    }
+
+    #bottom-part2 {
+        width: 100%;
+        gap: 4vw;
+    }
+
+    #bottom-part2 img {
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+
+    #bottom-part2 p {
+        font-size: 3.5vw;
+        line-height: 1.5;
     }
 }
 
@@ -1197,5 +1281,49 @@ button:hover ~ .cursor,
 
     #footer h1 {
         font-size: 9vw;
+    }
+}
+
+/* Footer Responsive Styles */
+@media (max-width: 768px) {
+    #footer {
+        height: auto;
+        padding: 4vw 3vw;
+    }
+
+    #footer h1 {
+        font-size: 15vw;
+    }
+
+    #footer-div {
+        height: 15vh;
+    }
+
+    #footer-bottom {
+        height: auto;
+    }
+
+    .copyright {
+        font-size: 12px;
+        padding-top: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    #footer {
+        padding: 6vw 3vw;
+    }
+
+    #footer h1 {
+        font-size: 18vw;
+    }
+
+    #footer-div {
+        height: 10vh;
+    }
+
+    .copyright {
+        font-size: 10px;
+        padding-top: 10px;
     }
 }
