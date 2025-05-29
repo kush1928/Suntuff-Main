@@ -93,32 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Always run these animations
     menuAnimation();
     loaderAnimation();
-
-    const cursor = document.querySelector('.cursor');
-    if (!cursor) return;
-
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-
-    document.addEventListener('mousedown', () => {
-        cursor.classList.add('active');
-    });
-
-    document.addEventListener('mouseup', () => {
-        cursor.classList.remove('active');
-    });
-
-    // Add active class on hover for interactive elements
-    document.querySelectorAll('a, button, .product-card, .team-card, .value-card, .stat-card, .cta-button, .menu-toggle, .menu-close').forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            cursor.classList.add('active');
-        });
-        item.addEventListener('mouseleave', () => {
-            cursor.classList.remove('active');
-        });
-    });
 });
 
 var swiper = new Swiper(".mySwiper", {

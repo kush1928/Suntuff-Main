@@ -128,46 +128,5 @@
 }
 
 @media (max-width: 768px) {
-    .hero-title {
-        font-size: 10vw;
-    }
-
-    .hero-subtitle {
-        font-size: 4vw;
-    }
-
-    .feature-grid {
-        grid-template-columns: 1fr;
-        gap: 5vw;
-    }
-
-    .feature-card {
-        padding: 5vw;
-    }
-
-    .feature-icon {
-        font-size: 8vw;
-    }
-
-    .feature-title {
-        font-size: 5vw;
-    }
-
-    .feature-description {
-        font-size: 3.5vw;
-    }
-
-    .cta-title {
-        font-size: 8vw;
-    }
-
-    .cta-description {
-        font-size: 4vw;
-    }
-
-    .cta-button {
-        font-size: 3.5vw;
-        padding: 2vw 4vw;
-        margin: 2vw;
-    }
+    /* Remove all mobile styles */
 } 

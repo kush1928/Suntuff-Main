@@ -378,7 +378,6 @@
     </div>
 
     <div id="fixed-image"></div>
-    <div class="cursor"></div>
     <div id="main">
         <div id="page1">
             <nav>
@@ -563,34 +562,6 @@
             // Redirect to products page if product not found
             window.location.href = 'newProductsPage.html';
         }
-
-        // Custom cursor movement
-        const cursor = document.querySelector('.cursor');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-        
-        // Add active class on click
-        document.addEventListener('mousedown', () => {
-            cursor.classList.add('active');
-        });
-        
-        document.addEventListener('mouseup', () => {
-            cursor.classList.remove('active');
-        });
-        
-        // Add active class on hover for interactive elements
-        document.querySelectorAll('a, button, .product-card, .team-card, .value-card, .stat-card, .cta-button, .menu-toggle, .menu-close').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                cursor.classList.add('active');
-            });
-            
-            item.addEventListener('mouseleave', () => {
-                cursor.classList.remove('active');
-            });
-        });
 
         // Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');

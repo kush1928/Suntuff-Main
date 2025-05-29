@@ -863,13 +863,9 @@ button:active {
 }
 
 /* Remove cursor-follower styles */
-.cursor-follower {
-    display: none;
-}
-
 /* Add cursor styles to interactive elements */
 a, button, .product-card, .team-card, .value-card, .stat-card, .cta-button, .menu-toggle, .menu-close {
-    cursor: none;
+    cursor: pointer;
 }
 
 a:hover ~ .cursor,
@@ -1325,5 +1321,488 @@ button:hover ~ .cursor,
     .copyright {
         font-size: 10px;
         padding-top: 10px;
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* About Page Mobile Styles */
+    .about-hero h1 {
+        font-size: 15vw;
+        line-height: 13vw;
+    }
+    
+    .about-hero p {
+        font-size: 4vw;
+        line-height: 5.5vw;
+        width: 100%;
+    }
+    
+    .section-header {
+        font-size: 8vw;
+        line-height: 8vw;
+        margin-bottom: 5vw;
+    }
+    
+    .section-header::after {
+        width: 50%;
+    }
+    
+    .section-description {
+        width: 100%;
+        font-size: 4vw;
+        line-height: 6vw;
+    }
+    
+    .history-section, .team-section, .values-section, .stats-section, .cta-section {
+        padding: 15vw 5vw;
+    }
+    
+    .timeline::after {
+        left: 31px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+        text-align: left;
+    }
+    
+    .timeline-item::after {
+        left: 18px;
+    }
+    
+    .left, .right {
+        left: 0;
+    }
+    
+    .team-grid, .values-grid {
+        grid-template-columns: 1fr;
+        gap: 5vw;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .team-info h3 {
+        font-size: 5vw;
+    }
+    
+    .team-info p {
+        font-size: 3.5vw;
+    }
+    
+    .team-bio {
+        font-size: 3vw;
+    }
+    
+    .social-links a {
+        font-size: 3vw;
+    }
+    
+    .timeline-year {
+        font-size: 4vw;
+    }
+    
+    .stat-number {
+        font-size: 8vw;
+    }
+    
+    .stat-label {
+        font-size: 3.5vw;
+    }
+    
+    .value-icon {
+        font-size: 8vw;
+    }
+    
+    .value-card p {
+        font-size: 3.5vw;
+    }
+    
+    .cta-content h2 {
+        font-size: 7vw;
+    }
+    
+    .cta-content p {
+        font-size: 4vw;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        gap: 3vw;
+    }
+    
+    .cta-button {
+        padding: 3vw 6vw;
+        font-size: 4vw;
+    }
+
+    /* Contact Page Mobile Styles */
+    .contact-hero {
+        height: auto;
+        padding: 15vw 5vw;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 12vw;
+        line-height: 11vw;
+    }
+
+    .hero-content p {
+        font-size: 4vw;
+        max-width: 100%;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
+    .info-card {
+        padding: 5vw;
+    }
+
+    .info-card .icon {
+        font-size: 6vw;
+    }
+
+    .info-card h3 {
+        font-size: 4vw;
+    }
+
+    .info-card p {
+        font-size: 3vw;
+    }
+
+    .contact-form {
+        padding: 5vw;
+    }
+
+    .contact-form h2 {
+        font-size: 6vw;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 3vw;
+        font-size: 3.5vw;
+    }
+
+    .form-group textarea {
+        height: 30vw;
+    }
+
+    .submit-btn {
+        padding: 3vw;
+        font-size: 3.5vw;
+    }
+
+    .map-container {
+        height: 60vw;
+    }
+
+    .faq-section h2 {
+        font-size: 8vw;
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .faq-item {
+        padding: 5vw;
+    }
+
+    .faq-item h3 {
+        font-size: 4vw;
+    }
+
+    .faq-item p {
+        font-size: 3vw;
+    }
+
+    /* Index Page Mobile Styles */
+    .hero-title {
+        font-size: 10vw;
+    }
+
+    .hero-subtitle {
+        font-size: 4vw;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 5vw;
+    }
+
+    .feature-card {
+        padding: 5vw;
+    }
+
+    .feature-icon {
+        font-size: 8vw;
+    }
+
+    .feature-title {
+        font-size: 5vw;
+    }
+
+    .feature-description {
+        font-size: 3.5vw;
+    }
+
+    .cta-title {
+        font-size: 8vw;
+    }
+
+    .cta-description {
+        font-size: 4vw;
+    }
+
+    .cta-button {
+        font-size: 3.5vw;
+        padding: 2vw 4vw;
+        margin: 2vw;
+    }
+
+    /* Product Page Mobile Styles */
+    .product-hero-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .product-hero-left,
+    .product-hero-right {
+        width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+
+    .product-hero h1 {
+        text-align: center;
+        font-size: 12vw;
+        line-height: 1.2;
+    }
+
+    .product-hero h3 {
+        text-align: center;
+        font-size: 4vw;
+    }
+
+    .collection-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .collection-header h2 {
+        font-size: 10vw;
+        margin-bottom: 5vw;
+    }
+
+    .collection-header p {
+        width: 100%;
+        font-size: 4vw;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 5vw;
+        padding: 0 5vw;
+    }
+
+    .product-image {
+        height: 60vw;
+    }
+
+    .product-badge {
+        font-size: 3vw;
+        padding: 1vw 2vw;
+    }
+
+    .product-info {
+        padding: 4vw;
+    }
+
+    .product-info h3 {
+        font-size: 5vw;
+    }
+
+    .product-info p {
+        font-size: 3.5vw;
+    }
+
+    .spec-item {
+        font-size: 3vw;
+        padding: 1vw 2vw;
+    }
+
+    .product-button {
+        font-size: 3.5vw;
+        padding: 2vw 4vw;
+    }
+
+    /* Common Mobile Styles */
+    .hero-shapes {
+        display: block;
+    }
+
+    .hero-shape-1 {
+        width: 40vw;
+        height: 40vw;
+    }
+
+    .hero-shape-2 {
+        width: 35vw;
+        height: 35vw;
+    }
+
+    .hero-shape-3 {
+        width: 30vw;
+        height: 30vw;
+    }
+
+    .timeline-content, .team-card, .value-card, .stat-card {
+        transform: none !important;
+    }
+
+    nav h3 {
+        cursor: pointer;
+    }
+
+    #main {
+        overflow-x: hidden;
+    }
+
+    nav {
+        padding: 4vw;
+        background: rgba(248, 249, 250, 0.95);
+    }
+
+    nav h1 {
+        font-size: 6vw;
+    }
+
+    #nav-part2 {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 4vw;
+        cursor: pointer;
+    }
+
+    .mobile-menu {
+        padding: 5vw;
+    }
+
+    .mobile-menu h4 {
+        font-size: 4vw;
+        margin: 3vw 0;
+    }
+
+    .menu-close {
+        font-size: 6vw;
+    }
+
+    h1 {
+        font-size: 8vw;
+    }
+
+    h2 {
+        font-size: 6vw;
+    }
+
+    h3 {
+        font-size: 4vw;
+    }
+
+    p {
+        font-size: 3.5vw;
+        line-height: 5vw;
+    }
+
+    .section-header {
+        font-size: 7vw;
+    }
+
+    .section-description {
+        font-size: 3.5vw;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 5vw;
+    }
+
+    .card {
+        padding: 5vw;
+    }
+
+    button, .button {
+        font-size: 3.5vw;
+        padding: 2vw 4vw;
+    }
+
+    input, textarea, select {
+        font-size: 3.5vw;
+        padding: 2vw;
+    }
+
+    .product-card {
+        margin: 0 5vw;
+    }
+
+    .product-image {
+        height: 50vw;
+    }
+
+    .product-info {
+        padding: 5vw;
+    }
+
+    .team-card {
+        margin: 0 5vw;
+    }
+
+    .team-image {
+        height: 50vw;
+    }
+
+    .value-card {
+        margin: 0 5vw;
+        padding: 5vw;
+    }
+
+    .stat-card {
+        margin: 0 5vw;
+    }
+
+    .stat-number {
+        font-size: 8vw;
+    }
+
+    #footer {
+        padding: 10vw 5vw;
+    }
+
+    #footer h1 {
+        font-size: 8vw;
+    }
+
+    .copyright {
+        font-size: 3vw;
     }
 }
